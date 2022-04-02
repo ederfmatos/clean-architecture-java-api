@@ -1,0 +1,8 @@
+rootProject.name = 'java-modules'
+include 'domain'
+include 'validation'
+include 'presentation'
+include 'infra'
+include 'data'
+include 'main'
+
