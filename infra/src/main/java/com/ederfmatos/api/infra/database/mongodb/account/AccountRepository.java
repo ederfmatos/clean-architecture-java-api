@@ -7,8 +7,8 @@ import com.ederfmatos.api.domain.model.account.Account;
 import com.ederfmatos.api.domain.usecases.account.add.AddAccountModel;
 import com.ederfmatos.api.infra.database.mongodb.account.model.AccountMongoEntity;
 import com.mongodb.BasicDBObject;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 import java.util.UUID;
@@ -17,10 +17,8 @@ public class AccountRepository implements LoadAccountByEmailRepository, AddAccou
 
     private final MongoCollection<Document> accountsCollection;
 
-    public AccountRepository() {
-        this.accountsCollection = MongoClients.create("mongodb://localhost:27017")
-                .getDatabase("clean-java-api")
-                .getCollection("accounts");
+    public AccountRepository(MongoDatabase mongoDatabase) {
+        this.accountsCollection = mongoDatabase.getCollection("accounts");
     }
 
     @Override

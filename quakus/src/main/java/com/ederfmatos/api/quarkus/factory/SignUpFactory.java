@@ -6,6 +6,7 @@ import com.ederfmatos.api.data.protocol.database.account.LoadAccountByEmailRepos
 import com.ederfmatos.api.data.usecases.DbAddAccountUseCase;
 import com.ederfmatos.api.domain.usecases.account.add.AddAccountUseCase;
 import com.ederfmatos.api.infra.criptography.MessageDigestHasher;
+import com.ederfmatos.api.infra.database.mongodb.DatabaseFactory;
 import com.ederfmatos.api.infra.database.mongodb.account.AccountRepository;
 import com.ederfmatos.api.presentation.handler.signup.SignUpHandler;
 import com.ederfmatos.api.presentation.protocol.Validation;
@@ -19,6 +20,8 @@ import javax.ws.rs.Produces;
 
 @ApplicationScoped
 public class SignUpFactory {
+
+    private static final DatabaseFactory DATABASE_FACTORY = new DatabaseFactory("mongodb://localhost:27017");
 
     @Produces
     @ApplicationScoped
@@ -51,13 +54,13 @@ public class SignUpFactory {
     @Produces
     @ApplicationScoped
     public AddAccountRepository addAccountRepository() {
-        return new AccountRepository();
+        return DATABASE_FACTORY.createAddAccountRepository();
     }
 
     @Produces
     @ApplicationScoped
     public LoadAccountByEmailRepository loadAccountByEmailRepository() {
-        return new AccountRepository();
+        return DATABASE_FACTORY.createLoadAccountByEmailRepository();
     }
 
     @Inject
