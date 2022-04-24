@@ -4,5 +4,7 @@ include 'validation'
 include 'presentation'
 include 'infra'
 include 'data'
-include 'main'
+include 'micronaut'
+include 'spring'
+include 'quakus'
 

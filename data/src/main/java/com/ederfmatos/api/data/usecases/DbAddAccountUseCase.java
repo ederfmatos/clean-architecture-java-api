@@ -10,7 +10,7 @@ import com.ederfmatos.api.domain.usecases.account.add.AddAccountUseCase;
 
 import java.util.Objects;
 
-public final class DbAddAccountUseCase implements AddAccountUseCase {
+public class DbAddAccountUseCase implements AddAccountUseCase {
 
     private final AddAccountRepository addAccountRepository;
     private final Hasher hasher;

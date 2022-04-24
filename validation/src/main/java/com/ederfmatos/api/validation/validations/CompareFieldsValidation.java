@@ -1,6 +1,5 @@
 package com.ederfmatos.api.validation.validations;
 
-import com.ederfmatos.api.domain.exception.DomainException;
 import com.ederfmatos.api.domain.exception.InvalidParamException;
 
 import java.util.Objects;
@@ -16,15 +15,13 @@ public final class CompareFieldsValidation extends FieldValidation {
     }
 
     @Override
-    public DomainException validate(Object object) {
+    public void validate(Object object) {
         Object value = getFieldValue(object, this.fieldName);
         Object valueToCompare = getFieldValue(object, this.fieldToCompareName);
 
-        if (Objects.equals(value, valueToCompare)) {
-            return null;
+        if (!Objects.equals(value, valueToCompare)) {
+            throw new InvalidParamException(this.fieldToCompareName);
         }
-
-        return new InvalidParamException(this.fieldToCompareName);
     }
 
 }

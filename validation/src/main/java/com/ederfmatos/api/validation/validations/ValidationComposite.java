@@ -1,11 +1,9 @@
 package com.ederfmatos.api.validation.validations;
 
-import com.ederfmatos.api.domain.exception.DomainException;
 import com.ederfmatos.api.presentation.protocol.Validation;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class ValidationComposite implements Validation {
 
@@ -16,12 +14,8 @@ public class ValidationComposite implements Validation {
     }
 
     @Override
-    public DomainException validate(Object input) {
-        return validations.stream()
-                .map(validation -> validation.validate(input))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElse(null);
+    public void validate(Object input) {
+        validations.forEach(validation -> validation.validate(input));
     }
 
 }

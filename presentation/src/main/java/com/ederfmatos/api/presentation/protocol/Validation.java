@@ -4,6 +4,6 @@ import com.ederfmatos.api.domain.exception.DomainException;
 
 public interface Validation {
 
-    DomainException validate(Object request);
+    void validate(Object request) throws DomainException;
 
 }

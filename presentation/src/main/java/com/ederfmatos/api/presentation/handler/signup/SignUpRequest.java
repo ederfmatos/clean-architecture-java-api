@@ -1,8 +1,10 @@
 package com.ederfmatos.api.presentation.handler.signup;
 
+import com.ederfmatos.api.domain.entities.Email;
+
 public record SignUpRequest(
         String name,
-        String email,
+        Email email,
         String password,
         String passwordConfirmation
 ) {
